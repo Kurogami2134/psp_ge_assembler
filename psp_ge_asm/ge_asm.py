@@ -43,6 +43,12 @@ def ge_asm(op_code, args: list[Any]):
             if args[0] & 0xFF000000 > 0:
                 raise OverflowError('Data size outside of range')
             return struct.pack("I", args[0] & 0xFFFFFF | 0x0B000000)
+        case 'END':  # data*
+            if len(args) < 1:
+                args.append(0)
+            if args[0] & 0xFF000000 > 0:
+                raise OverflowError('Data size outside of range')
+            return struct.pack("I", args[0] & 0xFFFFFF | 0x0C000000)
         case 'FINISH':  # data*
             if len(args) < 1:
                 args.append(0)
@@ -55,7 +61,7 @@ def ge_asm(op_code, args: list[Any]):
             if args[0] > 0xFF:
                 raise OverflowError('Base outside of range')
             return struct.pack("H2B", args[1], args[0], 0x10)
-        case 'VTYPE':  # bypass_transform, weight, weight_count, texture, color, normals, position, index
+        case 'VTYPE':  # bypass_transform, texture, color, normals, position, weight, weight_count, index
             while len(args) < 8:
                 args.append(0)
             command = (args[0] & 1) << 23 | (args[5] & 3) << 9  | (max(0, args[6] - 1) & 7) << 14 | args[1] & 3 | \
@@ -79,6 +85,10 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("H2B", args[0], args[1], 0xA8)
         case 'TSIZE0':  # texture0 widht, height (must be powers of two, indicated as exponent)
             return struct.pack("2BxB", *args, 0xB8)
+        case 'TPF':  # pixel format
+            return struct.pack("B2xB", args[0], 0xC3)
+        case 'TFUNC': # func, rgba
+            return struct.pack('2BxB', args[0], args[1], 0xC9)
         case 'TFLUSH':
             return b'\x00\x00\x00\xCB'
         case _:
