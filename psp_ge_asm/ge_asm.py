@@ -77,6 +77,10 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("I", args[0] | args[1] << 10 | 0x15000000)
         case 'TME':  # enable_texture_map
             return struct.pack("I", args[0] | 0x1E000000)
+        case 'ABE':  # alpha blending enable
+            return struct.pack("I", args[0] | 0x21000000)
+        case 'ATE':  # alpha test enable
+            return struct.pack("I", args[0] | 0x22000000)
         case 'TBP0':  # texture0 pointer lower
             if args[0] & 0xFF000000 > 0:
                 raise OverflowError('Pointer size outside of range')
@@ -87,9 +91,11 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("2BxB", *args, 0xB8)
         case 'TPF':  # pixel format
             return struct.pack("B2xB", args[0], 0xC3)
-        case 'TFUNC': # func, rgba
+        case 'TFUNC':  # func, rgba
             return struct.pack('2BxB', args[0], args[1], 0xC9)
         case 'TFLUSH':
             return b'\x00\x00\x00\xCB'
+        case 'ATEST':  # and, value, op
+            return struct.pack("4B", args[2], args[1], args[0], 0xDB)
         case _:
             raise NotImplementedError(f'The "{op_code}" op code is not yet implemented')

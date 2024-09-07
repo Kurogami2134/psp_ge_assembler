@@ -21,12 +21,15 @@ Instruction set for the assembler.
 - [ORIGIN](#ORIGIN)
 - [REGION1](#REGION1)
 - [TME](#TME)
+- [ABE](#abe)
+- [ATE](#ate)
 - [TBP0](#TBP0)
 - [TBW0](#TBW0)
 - [TSIZE0](#TSIZE0)
 - [TPF](#TPF)
 - [TFUNC](#TFUNC)
 - [TFLUSH](#TFLUSH)
+- [ATEST](#atest)
 
 ## Instructions
 
@@ -237,6 +240,22 @@ To set the drawing region.
 
 To enable or disable texture map.
 
+### ABE
+
+<b>Format:</b> ABE enable
+
+<b>Purpose:</b> Alpha blending enable
+
+To enable or disable alpha blending.
+
+### ATE
+
+<b>Format:</b> ATE enable
+
+<b>Purpose:</b> Alpha test enable
+
+To enable or disable alpha test.
+
 ### TBP0
 
 <b>Format:</b> TBP0 lower pointer
@@ -315,3 +334,26 @@ To set the texture funcion, and transparency.
 <b>Purpose:</b> Texture Flush
 
 To flush loaded texture.
+
+### ATEST
+
+<b>Format:</b> ATEST and, value, op
+
+<b>Purpose:</b> Alpha Test
+
+To set the alpha test parameters.
+
+<b>Description:</b> if (a & and) op (value & and)
+
+<b>Operator Codes:</b>
+
+| Code | Operator|
+|------|---------|
+| 0x00 | NEVER   |
+| 0x01 | ALWAYS  |
+| 0x02 | ==      |
+| 0x03 | !=      |
+| 0x04 | <       |
+| 0x05 | <=      |
+| 0x06 | >       |
+| 0x07 | >=      |
