@@ -81,6 +81,18 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("I", args[0] | 0x21000000)
         case 'ATE':  # alpha test enable
             return struct.pack("I", args[0] | 0x22000000)
+        case "MEC":  # material emission color
+            return struct.pack("I", args[0] | 0x54)
+        case "MAC":  # material ambient color
+            return struct.pack("I", args[0] | 0x55)
+        case "MDC":  # material diffuse color
+            return struct.pack("I", args[0] | 0x56)
+        case "MSC":  # material specular color
+            return struct.pack("I", args[0] | 0x57)
+        case "MAA":  # material alpha
+            return struct.pack("I", args[0] | 0x58)
+        case "MK":  # material specular
+            return struct.pack("f", args[0])[1:] + b'\x5B'
         case 'TBP0':  # texture0 pointer lower
             if args[0] & 0xFF000000 > 0:
                 raise OverflowError('Pointer size outside of range')

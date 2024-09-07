@@ -23,6 +23,12 @@ Instruction set for the assembler.
 - [TME](#TME)
 - [ABE](#abe)
 - [ATE](#ate)
+- [MEC](#mec)
+- [MAC](#mac)
+- [MDC](#mdc)
+- [MSC](#msc)
+- [MAA](#maa)
+- [MK](#mk)
 - [TBP0](#TBP0)
 - [TBW0](#TBW0)
 - [TSIZE0](#TSIZE0)
@@ -255,6 +261,54 @@ To enable or disable alpha blending.
 <b>Purpose:</b> Alpha test enable
 
 To enable or disable alpha test.
+
+### MEC
+
+<b>Format:</b> MEC rgb8
+
+<b>Purpose:</b> Material emission color
+
+To set material emission color.
+
+### MAC
+
+<b>Format:</b> MAC rgb8
+
+<b>Purpose:</b> Material ambient color
+
+To set material ambient color.
+
+### MDC
+
+<b>Format:</b> MDC rgb8
+
+<b>Purpose:</b> Material diffuse color
+
+To set material diffuse color.
+
+### MSC
+
+<b>Format:</b> MSC rgb8
+
+<b>Purpose:</b> Material specular color
+
+To set material specular color.
+
+### MAA
+
+<b>Format:</b> MAA rgb8
+
+<b>Purpose:</b> Material alpha color
+
+To set material alpha color.
+
+### MK
+
+<b>Format:</b> MK spec_coefficient
+
+<b>Purpose:</b> Model Specular
+
+To set the specular coefficient of the model.
 
 ### TBP0
 
