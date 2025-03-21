@@ -262,6 +262,54 @@ To enable or disable alpha blending.
 
 To enable or disable alpha test.
 
+### WORLDN
+
+<b>Format:</b> WORLDN number
+
+<b>Purpose:</b> World matrix number
+
+To select an world matrix.
+
+### WORLDD
+
+<b>Format:</b> WORLDD value
+
+<b>Purpose:</b> World matrix data
+
+To set the next entry in the world matrix.
+
+### VIEWN
+
+<b>Format:</b> VIEWN number
+
+<b>Purpose:</b> View matrix number
+
+To select a view matrix.
+
+### VIEWD
+
+<b>Format:</b> VIEWD value
+
+<b>Purpose:</b> View matrix data
+
+To set the next entry in the view matrix.
+
+### PROJN
+
+<b>Format:</b> PROJN number
+
+<b>Purpose:</b> Projection matrix number
+
+To select a projection matrix.
+
+### PROJD
+
+<b>Format:</b> PROJD value
+
+<b>Purpose:</b> Projection matrix data
+
+To set the next entry in the projection matrix.
+
 ### MEC
 
 <b>Format:</b> MEC rgb8
@@ -336,6 +384,14 @@ To set the size for texture 0.
 
 <b>Description:</b> Texture 0 size = 1 << width x 1 << height
 
+### TMODE
+
+<b>Format:</b> TMODE swizzle, separate_clut, levels
+
+<b>Purpose:</b> Set texture mode
+
+To set the texture mode.
+
 ### TPF
 
 <b>Format:</b> TPF format
@@ -359,6 +415,30 @@ To set pixel format for loaded texture.
 | TPF_DXT1   | 0x8  |
 | TPF_DXT3   | 0x9  |
 | TPF_DXT5   | 0xA  |
+
+### TFILTER
+
+<b>Format:</b> TFILTER min_filter, mag_filter
+
+<b>Purpose:</b> Texture filter
+
+To set the texture filter.
+
+<b>Texture Filters</b>
+
+| Filter  | Value |
+|---------|-------|
+| NEARSET | 0     |
+| LINEAR  | 1     |
+
+
+<b>Texture filter attributes</b>
+
+| Attribute      | Value |
+|----------------|-------|
+| MIPMAP_NEARSET | 4     |
+| MIPMAP_LINEAR  | 6     |
+
 
 ### TFUNC
 

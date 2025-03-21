@@ -81,6 +81,18 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("I", args[0] | 0x21000000)
         case 'ATE':  # alpha test enable
             return struct.pack("I", args[0] | 0x22000000)
+        case 'WORLDN': # func, world matrix number
+            return struct.pack('B2xB', args[0], 0x3A)
+        case 'WORLDD': # func, world matrix data
+            return struct.pack("f", args[0])[1:] + b'\x3B'
+        case 'VIEWN': # func, view matrix number
+            return struct.pack('B2xB', args[0], 0x3C)
+        case 'VIEWD': # func, view matrix data
+            return struct.pack("f", args[0])[1:] + b'\x3D'
+        case 'PROJN': # func, projection matrix number
+            return struct.pack('B2xB', args[0], 0x3E)
+        case 'PROJD': # func, projection matrix data
+            return struct.pack("f", args[0])[1:] + b'\x3F'
         case "MEC":  # material emission color
             return struct.pack("I", args[0] | 0x54)
         case "MAC":  # material ambient color
@@ -101,8 +113,12 @@ def ge_asm(op_code, args: list[Any]):
             return struct.pack("H2B", args[0], args[1], 0xA8)
         case 'TSIZE0':  # texture0 widht, height (must be powers of two, indicated as exponent)
             return struct.pack("2BxB", *args, 0xB8)
+        case 'TMODE':  # swizzle, separate_clut, levels
+            return struct.pack("I", args[0] | args[1] << 8 | args[2] << 16 | 0xC2000000)
         case 'TPF':  # pixel format
             return struct.pack("B2xB", args[0], 0xC3)
+        case 'TFILTER':  # min_filter, mag_filter
+            return struct.pack("2BxB", *args, 0xC6)
         case 'TFUNC':  # func, rgba
             return struct.pack('2BxB', args[0], args[1], 0xC9)
         case 'TFLUSH':
